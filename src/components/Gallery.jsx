@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react';
 import TourCard from './TourCard';
 
+
+// The API endpoint where we get the tour data
 const url = 'https://course-api.com/react-tours-project';
 
 function Gallery({ tours, setTours, onRemove }) {
@@ -32,8 +34,15 @@ function Gallery({ tours, setTours, onRemove }) {
     fetchTours();
   }, []);
 
+
+
   if (loading) return <h2>Loading...</h2>;
+
+
+  // Show error message with retry button
   if (error) return <h2>Failed to load tours. Please try again.</h2>;
+
+     // Show message when no tours are left
   if (tours.length === 0)
     return (
       <div>
@@ -42,6 +51,8 @@ function Gallery({ tours, setTours, onRemove }) {
       </div>
     );
 
+
+    // If everything is fine, show the list of tours
   return (
     <section>
       {tours.map((tour) => (
