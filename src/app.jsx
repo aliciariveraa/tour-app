@@ -1,12 +1,16 @@
 // src/App.jsx
 
+
 import { useState } from 'react';
 import Gallery from './components/Gallery';
 import './styles/styles.css';
 
 function App() {
-  const [tours, setTours] = useState([]); // State to hold tour data
+  // State to hold tour data
+  const [tours, setTours] = useState([]); 
 
+
+  // Handler to remove a tour by ID
   const removeTour = (id) => {
     const filtered = tours.filter(tour => tour.id !== id);
     setTours(filtered);
