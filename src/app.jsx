@@ -1,32 +1,24 @@
-import { component$, useSignal } from '@builder.io/qwik'
+// src/App.jsx
 
-import qwikLogo from './assets/qwik.svg'
-import viteLogo from '/vite.svg'
-import './app.css'
+import { useState } from 'react';
+import Gallery from './components/Gallery';
+import './styles/styles.css';
 
-export const App = component$(() => {
-  const count = useSignal(0)
+function App() {
+  const [tours, setTours] = useState([]); // State to hold tour data
+
+  const removeTour = (id) => {
+    const filtered = tours.filter(tour => tour.id !== id);
+    setTours(filtered);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} class="logo" alt="Vite logo" />
-        </a>
-        <a href="https://qwik.dev" target="_blank">
-          <img src={qwikLogo} class="logo qwik" alt="Qwik logo" />
-        </a>
-      </div>
-      <h1>Vite + Qwik</h1>
-      <div class="card">
-        <button onClick$={() => count.value++}>count is {count.value}</button>
-        <p>
-          Edit <code>src/app.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p class="read-the-docs">
-        Click on the Vite and Qwik logos to learn more
-      </p>
-    </>
-  )
-})
+    <main>
+      <h1>Tour Comparison App</h1>
+      <Gallery tours={tours} setTours={setTours} onRemove={removeTour} />
+    </main>
+  );
+}
+
+export default App;
+
